@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jira Daily Update - Options</title>
+    <link rel="stylesheet" href="./options.css" />
+  </head>
+  <body class="bg-slate-50 text-slate-900">
+    <div class="mx-auto max-w-2xl p-6">
+      <div class="flex items-center justify-between gap-3">
+        <div>
+          <div class="text-lg font-semibold">Jira Daily Update</div>
+          <div class="text-sm text-slate-600">Configure your Jira Cloud connection.</div>
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div class="grid gap-4">
+          <label>
+            <div class="text-sm font-medium text-slate-700">Jira Base URLs</div>
+            <div class="text-xs text-slate-500">
+              One per line. Example: https://yourcompany.atlassian.net
+            </div>
+            <textarea
+              id="jiraBaseUrls"
+              rows="4"
+              class="mt-1 w-full resize-y rounded-md border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+              placeholder="https://siteA.atlassian.net&#10;https://siteB.atlassian.net"
+              autocomplete="off"
+            ></textarea>
+          </label>
+
+          <label>
+            <div class="text-sm font-medium text-slate-700">Email</div>
+            <input
+              id="email"
+              type="email"
+              class="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+              placeholder="you@company.com"
+              autocomplete="off"
+            />
+          </label>
+
+          <label>
+            <div class="text-sm font-medium text-slate-700">API Token</div>
+            <div class="text-xs text-slate-500">
+              Create one in your Atlassian account security settings.
+            </div>
+            <input
+              id="apiToken"
+              type="password"
+              class="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+              placeholder="••••••••••••••••"
+              autocomplete="off"
+            />
+          </label>
+        </div>
+
+        <div class="mt-5 flex items-center gap-2">
+          <button
+            id="validateBtn"
+            class="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Validate &amp; Save
+          </button>
+          <div id="status" class="ml-auto text-sm text-slate-600"></div>
+        </div>
+      </div>
+
+      <div class="mt-4 text-xs text-slate-500">
+        Settings are stored in <code>chrome.storage.sync</code> (sync requires Chrome Sync enabled).
+      </div>
+    </div>
+
+    <script src="./options.js" type="module"></script>
+  </body>
+</html>
+
