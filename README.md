@@ -1,69 +1,90 @@
 # Jira Daily Update (Chrome Extension)
 
+Generate daily or date-range Jira worklog updates from your Jira Cloud account. Pick From/To dates, see tickets grouped by project with totals, and copy one combined update or per-project (board-wise).
+
+---
+
+## Screenshots
+
+**Popup – single day**  
+*One board, one ticket.*
+
+![Popup – single day](screenshots/popup-single.png)
+
+**Options – configure Jira**  
+*Add multiple Jira Base URLs, email, API token; Validate & Save.*
+
+![Popup – date range](screenshots/popup-range.png)
+
+**Popup – date range**  
+*Multiple boards (e.g. Atlas CRM, Skychain Integration) with totals and per-board Copy.*
+
+![Options page](screenshots/options.png)
+
+---
+
 ## What it does
 
-- Pick a **date range** (From / To, defaults to today → today)
-- Fetch your Jira worklogs for that range from **one or more Jira Cloud sites**
-- Show ticket **key**, **summary**, **time logged**, and **status**, grouped by **project** (boards)
-- Show **totals**:
-  - Overall total time across all projects
-  - Per-project total time
-- Copy updates in this format:
+- **Date range**: From / To (defaults to today).
+- **Multi-site**: Fetch from one or more Jira Cloud base URLs.
+- **Display**: Ticket key, summary, time logged, status — grouped by project (board).
+- **Totals**: Overall time and per-project time.
+- **Copy**: “Copy all” for one block, or “Copy” on a project card for that board only.
+- **Copy format** (no site/domain in text):
 
 ```
 -------------------------------------------------
-Today's Update - [DD-MM-YYYY]          # when From = To = today
+Today's Update - [DD-MM-YYYY]     (when From = To = today)
+-------------------------------------------------
+Total - [h:mm]
 -------------------------------------------------
 Project Name [h:mm]
 -------------------------------------------------
 - KEY - Summary [h:mm] - Status
 ```
 
+Only projects with logged time in the range are shown.
+
+---
+
 ## Setup
 
-1. Install dependencies:
+1. **Install and build**
 
 ```bash
 npm install
-```
-
-2. Build the extension assets:
-
-```bash
 npm run build
 ```
 
-3. Load in Chrome:
-   - Open `chrome://extensions`
-   - Enable **Developer mode**
-   - Click **Load unpacked**
-   - Select this folder: `C:\Users\sagar\Desktop\Infynno\jira-ext`
+2. **Load in Chrome**
 
-## Configure Jira
+- Open `chrome://extensions`
+- Turn on **Developer mode**
+- **Load unpacked** → select this folder (e.g. `jira-ext`)
 
-Open the extension **Options** page and set:
+3. **Configure**
 
-- **Jira Base URLs**: one per line, e.g.\
-  `https://siteA.atlassian.net`\
-  `https://siteB.atlassian.net`
+- Open **Options** (link in popup)
+- **Jira Base URLs**: one per line (e.g. `https://yourcompany.atlassian.net`)
 - **Email**: your Atlassian email
-- **API Token**: create one in Atlassian account security settings
+- **API Token**: from [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+- Click **Validate & Save** — invalid URLs are removed; only valid ones are saved
 
-These settings are saved in `chrome.storage.sync` so they can follow your Chrome Sync (if enabled).
+Settings are stored in `chrome.storage.sync` (synced if Chrome Sync is on).
 
-Click **Validate & Save**:
-
-- It will request permissions and validate each Jira URL
-- Any invalid / no-access URLs are **removed automatically**
-- Only valid URLs are saved
+---
 
 ## Using the popup
 
-- Choose **From** and **To** dates
-- Click **Get** (full-width button) to fetch worklogs
-- Use:
-  - **Copy all**: one combined update with total + all projects
-  - **Copy** on a specific project card: board-wise update for that project only
+- Set **From** and **To** dates → click **Get**
+- Use **Copy all** for the full update, or **Copy** on a project card for that board only
 
-Projects with no logged time in the selected range are **hidden** from the list and from the copied text.
+---
 
+## Icons
+
+Put extension icons in `icons/`:
+
+- `icon16.png`, `icon32.png`, `icon48.png`, `icon128.png`
+
+See `icons/README.txt` for details.
